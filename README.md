@@ -98,4 +98,4 @@ dbt run --profiles-dir ../
 ```
 We specify in this case the directory where `profiles.yml` can be found. This file will read the google credentials JSON location as an environment variable which is set automatically by Github Actions once google is authenticated.
 
-For the worflow to work it is important to set the google credentials JSON as a (repository secret)[https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions] named `GCP_SERVICE_ACCOUNT_KEY` which is the name used in the workflow yml `dbt-run.yml`
+For the worflow to work it is important to set the google credentials JSON as a (repository secret)[https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions] named `GCP_SERVICE_ACCOUNT_KEY` which is the name used in the workflow yml `dbt-run.yml`.
