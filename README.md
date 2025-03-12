@@ -45,6 +45,7 @@ Use dbt-core to create a staging table from the `transactions` raw table in the 
 
 
 ## Create Staging and Data Mart tables from Bitcoin data
+[Setup Video Tutorial](https://www.loom.com/share/546aa2513b8e4424aed167215110af63?sid=70b097e7-92bf-4966-8e3b-6fefa019ed24)
 ### Prerequisites
 - [Install dbt Core](https://docs.getdbt.com/docs/core/installation-overview) to be able to use on terminal. Easiest way is to create a python virtual environment and run:
 ```sh
@@ -98,4 +99,4 @@ dbt run --profiles-dir ../
 ```
 We specify in this case the directory where `profiles.yml` can be found. This file will read the google credentials JSON location as an environment variable which is set automatically by Github Actions once google is authenticated.
 
-For the worflow to work it is important to set the google credentials JSON as a (repository secret)[https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions] named `GCP_SERVICE_ACCOUNT_KEY` which is the name used in the workflow yml `dbt-run.yml`.
+For the worflow to work it is important to set the google credentials JSON as a [repository secret](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions) named `GCP_SERVICE_ACCOUNT_KEY` which is the name used in the workflow yml `dbt-run.yml`.
