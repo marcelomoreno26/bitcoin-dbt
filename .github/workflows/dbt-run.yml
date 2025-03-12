@@ -1,0 +1,45 @@
+name: Run dbt Models for Staging and Data Marts
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  dbt:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Google Cloud authentication
+      - name: Set up Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+
+      # Install dependencies and create a virtual environment
+      - name: Install dependencies and create virtual environment
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # Run dbt in the 'staging' directory
+      - name: Run dbt in the staging directory
+        run: |
+          source ../.venv/bin/activate  
+          dbt run --profiles-dir ../
+        working-directory: ./staging  
+
+      # Run dbt in the 'data_marts' directory
+      - name: Run dbt in the data_marts directory
+        run: |
+          source ../.venv/bin/activate  
+          dbt run --profiles-dir ../
+        working-directory: ./data_marts 
